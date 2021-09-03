@@ -13,7 +13,7 @@ def reverse(x: int) -> int:
             return 0
         digit = x % 10
         # Python3 的取模运算在 x 为负数时也会返回 [0, 9) 以内的结果，因此这里需要进行特殊判断
-        if x < 0 < digit:
+        if x < 0 and digit > 0:
             digit -= 10
 
         # 同理，Python3 的整数除法在 x 为负数时会向下（更小的负数）取整，因此不能写成 x //= 10
@@ -21,7 +21,6 @@ def reverse(x: int) -> int:
         rev = rev * 10 + digit
 
     return rev
-
 
 # Slice notation "[a:b:c]" means "count in increments of c starting at a inclusive, up to b exclusive". If c is
 # negative you count backwards, if omitted it is 1. If a is omitted then you start as far as possible in the
@@ -43,7 +42,7 @@ def reverse(x: int) -> int:
 # You didn't try string[:0:-1], but that means "count backwards from the end up to but not including index 0". So
 # that's all except the first character, reversed. [:0:-1] is to [::-1] as [0:len(string)-1] is to [:]. In both cases
 # the excluded end of the slice is the index that would have been the included last character of the slice with the
-# end omitted. 
+# end omitted.
 #
 # You also didn't try string[-1::-1], which is the same as string[::-1] because -1 means the last character of the
 # string.
